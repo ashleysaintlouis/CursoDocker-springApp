@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -14,15 +15,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequestMapping("/")
 @CrossOrigin("*")
 public class ConvidadosController {
+    @Autowired
+    ConvidadoRepository repository;
 
     @GetMapping
     public List<Convidado> getConvidados() {
-        List<Convidado> lista = new ArrayList<Convidado>();
-        
-        lista.add(new Convidado("Fulano", "5654548754"));
-        lista.add(new Convidado("Cicrano", "56575448753"));
-
-        return lista;
+        return repository.findAll();
     }
     
     
